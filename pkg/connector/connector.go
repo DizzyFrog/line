@@ -53,7 +53,7 @@ func (lc *LineConnector) Start(ctx context.Context) error {
 }
 
 func (lc *LineConnector) GetBridgeInfoVersion() (info, capabilities int) {
-	return 1, 4
+	return 1, 5
 }
 
 func (lc *LineConnector) GetCapabilities() *bridgev2.NetworkGeneralCapabilities {
