@@ -2663,7 +2663,7 @@ func (lc *LineClient) queueHistoricalSystemMessage(msg *line.Message, opType int
 				return nil, bridgev2.ErrIgnoringRemoteEvent
 			}
 			if systemEvent != nil {
-				change, err := systemEvent.GetChatInfoChange(ctx)
+				change, err := systemEvent.GetChatInfoChange(ctx, portal)
 				if err != nil {
 					return nil, fmt.Errorf("get historical system message change: %w", err)
 				}

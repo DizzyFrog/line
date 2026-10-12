@@ -9,7 +9,7 @@ require (
 	go.mau.fi/util v0.10.2-0.20260918225449-a4c0d5b86aa8
 	golang.org/x/crypto v0.57.0
 	golang.org/x/image v0.23.0
-	maunium.net/go/mautrix v0.31.1-0.20261005174338-57e1ea5dd74d
+	maunium.net/go/mautrix v0.31.1-0.20261012132636-34107524d2ab
 )
 
 require (
