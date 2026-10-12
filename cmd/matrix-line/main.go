@@ -16,7 +16,7 @@ var (
 
 func main() {
 	m := mxmain.BridgeMain{
-		Name:        "beeper-line",
+		Name:        "matrix-line",
 		Description: "A Matrix-LINE bridge",
 		URL:         "https://github.com/beeper/line",
 		Version:     "1.2.0",
