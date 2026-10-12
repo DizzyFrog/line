@@ -8,7 +8,7 @@ import (
 	"maunium.net/go/mautrix/bridgev2"
 	"maunium.net/go/mautrix/event"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
+	"github.com/beeper/line/pkg/line"
 )
 
 func TestOversizedMediaNotice(t *testing.T) {

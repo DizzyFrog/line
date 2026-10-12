@@ -11,8 +11,8 @@ import (
 	"maunium.net/go/mautrix/event"
 	"maunium.net/go/mautrix/id"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/e2ee"
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
+	"github.com/beeper/line/pkg/e2ee"
+	"github.com/beeper/line/pkg/line"
 )
 
 type mentionTestMatrix struct {

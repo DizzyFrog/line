@@ -18,8 +18,8 @@ import (
 	"maunium.net/go/mautrix/bridgev2/networkid"
 	"maunium.net/go/mautrix/bridgev2/status"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/e2ee"
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
+	"github.com/beeper/line/pkg/e2ee"
+	"github.com/beeper/line/pkg/line"
 )
 
 const (

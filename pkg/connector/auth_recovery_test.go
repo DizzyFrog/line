@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
+	"github.com/beeper/line/pkg/line"
 )
 
 var (

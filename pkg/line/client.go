@@ -17,8 +17,8 @@ import (
 	"sync"
 	"time"
 
-	gen "github.com/highesttt/matrix-line-messenger/pkg"
-	"github.com/highesttt/matrix-line-messenger/pkg/line/password"
+	gen "github.com/beeper/line/pkg"
+	"github.com/beeper/line/pkg/line/password"
 )
 
 const (

@@ -1,4 +1,4 @@
-module github.com/highesttt/matrix-line-messenger
+module github.com/beeper/line
 
 go 1.26.0
 

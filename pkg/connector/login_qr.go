@@ -7,7 +7,7 @@ import (
 
 	"maunium.net/go/mautrix/bridgev2"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
+	"github.com/beeper/line/pkg/line"
 )
 
 type LineQRLogin struct {

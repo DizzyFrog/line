@@ -16,7 +16,7 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
+	"github.com/beeper/line/pkg/line"
 )
 
 func TestInvalidSenderKeyReconnectPersistsFullVerification(t *testing.T) {

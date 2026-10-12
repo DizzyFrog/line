@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
-	"github.com/highesttt/matrix-line-messenger/pkg/ltsm"
+	"github.com/beeper/line/pkg/line"
+	"github.com/beeper/line/pkg/ltsm"
 )
 
 func TestV1WireHeaderUsesV1DecryptWithoutMetadata(t *testing.T) {

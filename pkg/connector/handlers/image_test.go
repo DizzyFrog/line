@@ -3,7 +3,7 @@ package handlers
 import (
 	"testing"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
+	"github.com/beeper/line/pkg/line"
 )
 
 func TestLineImageDownloadSourcePrefersPublicResource(t *testing.T) {

@@ -1,6 +1,6 @@
 # Letter Sealing
 
-This note summarizes what issue [#42](https://github.com/highesttt/matrix-line-messenger/issues/42) and issue [#54](https://github.com/highesttt/matrix-line-messenger/issues/54) currently tell us about Letter Sealing support in this bridge, and how that lines up with the current implementation.
+This note summarizes what issue [#42](https://github.com/beeper/line/issues/42) and issue [#54](https://github.com/beeper/line/issues/54) currently tell us about Letter Sealing support in this bridge, and how that lines up with the current implementation.
 
 ## TL;DR
 
@@ -146,8 +146,8 @@ The bridge determines E2EE capability per-chat before sending:
 
 ## References
 
-- Issue [#42: login fails for accounts with letter sealing OFF](https://github.com/highesttt/matrix-line-messenger/issues/42)
-- Issue [#54: failure to decrypt when sending message to user with letter sealing off](https://github.com/highesttt/matrix-line-messenger/issues/54)
+- Issue [#42: login fails for accounts with letter sealing OFF](https://github.com/beeper/line/issues/42)
+- Issue [#54: failure to decrypt when sending message to user with letter sealing off](https://github.com/beeper/line/issues/54)
 - [About Letter Sealing | LINE Help Center](https://help.line.me/line/?contentId=50000087)
 - [October, 2015 LINE Introduces Letter Sealing Feature for Advanced Security](https://www.linecorp.com/en/pr/news/en/2015/1107)
 - [LINE Encryption Report (2024)](https://www.lycorp.co.jp/en/privacy-security/security/transparency/encryption-report/2024/)

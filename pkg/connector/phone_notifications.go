@@ -3,7 +3,7 @@ package connector
 import (
 	"context"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
+	"github.com/beeper/line/pkg/line"
 )
 
 var updateSettingsAttributes2WithClient = func(

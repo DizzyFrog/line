@@ -1,8 +1,8 @@
-# matrix-line-messenger
+# beeper-line
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/highesttt/matrix-line-messenger)](https://goreportcard.com/report/github.com/highesttt/matrix-line-messenger)
-![Languages](https://img.shields.io/github/languages/top/highesttt/matrix-line-messenger.svg)
-[![License](https://img.shields.io/github/license/highesttt/matrix-line-messenger.svg)](LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/github.com/beeper/line)](https://goreportcard.com/report/github.com/beeper/line)
+![Languages](https://img.shields.io/github/languages/top/beeper/line.svg)
+[![License](https://img.shields.io/github/license/beeper/line.svg)](LICENSE)
 
 A Matrix bridge for LINE Messenger using mautrix-go.\
 Based on the [mautrix-twilio](https://github.com/mautrix/twilio) bridge
@@ -62,7 +62,7 @@ Based on the [mautrix-twilio](https://github.com/mautrix/twilio) bridge
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/highesttt/matrix-line-messenger.git
+git clone https://github.com/beeper/line.git
 cd matrix-line-messenger
 mkdir data
 ```

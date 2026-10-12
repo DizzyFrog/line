@@ -3,7 +3,7 @@ package secret
 import (
 	"fmt"
 
-	gen "github.com/highesttt/matrix-line-messenger/pkg"
+	gen "github.com/beeper/line/pkg"
 )
 
 type SecretResult struct {

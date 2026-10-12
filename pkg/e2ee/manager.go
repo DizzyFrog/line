@@ -13,9 +13,9 @@ import (
 	"strings"
 	"sync"
 
-	gen "github.com/highesttt/matrix-line-messenger/pkg"
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
-	"github.com/highesttt/matrix-line-messenger/pkg/ltsm"
+	gen "github.com/beeper/line/pkg"
+	"github.com/beeper/line/pkg/line"
+	"github.com/beeper/line/pkg/ltsm"
 )
 
 var (

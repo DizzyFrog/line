@@ -19,10 +19,10 @@ import (
 	"maunium.net/go/mautrix/bridgev2/networkid"
 	"maunium.net/go/mautrix/event"
 
-	gen "github.com/highesttt/matrix-line-messenger/pkg"
-	"github.com/highesttt/matrix-line-messenger/pkg/e2ee"
-	"github.com/highesttt/matrix-line-messenger/pkg/line"
-	"github.com/highesttt/matrix-line-messenger/pkg/ltsm"
+	gen "github.com/beeper/line/pkg"
+	"github.com/beeper/line/pkg/e2ee"
+	"github.com/beeper/line/pkg/line"
+	"github.com/beeper/line/pkg/ltsm"
 )
 
 type mentionEntry struct {

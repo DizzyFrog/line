@@ -3,7 +3,7 @@ package main
 import (
 	"maunium.net/go/mautrix/bridgev2/matrix/mxmain"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/connector"
+	"github.com/beeper/line/pkg/connector"
 )
 
 // Information to find out exactly which commit the bridge was built from.
@@ -16,9 +16,9 @@ var (
 
 func main() {
 	m := mxmain.BridgeMain{
-		Name:        "matrix-line",
+		Name:        "beeper-line",
 		Description: "A Matrix-LINE bridge",
-		URL:         "https://github.com/highesttt/matrix-line-messenger",
+		URL:         "https://github.com/beeper/line",
 		Version:     "1.2.0",
 		Connector:   &connector.LineConnector{},
 	}

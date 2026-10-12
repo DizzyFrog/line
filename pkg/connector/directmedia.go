@@ -11,7 +11,7 @@ import (
 	"maunium.net/go/mautrix/bridgev2/networkid"
 	"maunium.net/go/mautrix/mediaproxy"
 
-	"github.com/highesttt/matrix-line-messenger/pkg/connector/handlers"
+	"github.com/beeper/line/pkg/connector/handlers"
 )
 
 const (
