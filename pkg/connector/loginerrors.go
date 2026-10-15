@@ -1,10 +1,13 @@
 package connector
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 
 	"maunium.net/go/mautrix/bridgev2"
+
+	"github.com/beeper/line/pkg/line"
 )
 
 // genericLoginFailureReason is shown in the login form when LINE rejects the sign-in but
@@ -53,6 +56,8 @@ func wrapLineLoginError(err error) error {
 		reason = details.ErrorMessage
 	}
 	switch {
+	case errors.Is(err, line.ErrLoginVerificationExpired):
+		mapped = ErrLoginVerificationFailed
 	case isBlockedUserLoginError(reason):
 		mapped = ErrLoginTooManyAttempts
 	case details.HTTPStatus == http.StatusTooManyRequests:
