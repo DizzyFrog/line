@@ -1638,9 +1638,14 @@ func (lc *LineClient) pollLoop(ctx context.Context) {
 		return false
 	}
 
+	sseDisconnected := false
 	handler := func(eventType, data string) {
+		if sseDisconnected && lc.sendSSEConnectedIfCurrent(ctx) {
+			sseDisconnected = false
+		}
+
 		// handle keep alives
-		if eventType == "ping" || eventType == "connInfoRevision" {
+		if eventType == line.SSEEventOpen || eventType == "ping" || eventType == "connInfoRevision" {
 			return
 		}
 
@@ -1733,6 +1738,8 @@ func (lc *LineClient) pollLoop(ctx context.Context) {
 					if lc.handleReceiveAuthError(ctx, client, err) {
 						return
 					}
+				} else if !sseDisconnected && lc.sendSSEDisconnectedIfCurrent(ctx, err) {
+					sseDisconnected = true
 				}
 			}
 			if !waitForSSEReconnect(receiveCtx) {
