@@ -699,6 +699,7 @@ func (lc *LineClient) HandleMatrixMessage(ctx context.Context, msg *bridgev2.Mat
 		lineMsg.Text = plainTextBody
 	} else {
 		lineMsg.Chunks = chunks
+		contentMetadata["e2eeVersion"] = strconv.Itoa(e2ee.ChunksVersion(chunks))
 	}
 
 	var relatedMsg *database.Message
@@ -790,6 +791,7 @@ func (lc *LineClient) HandleMatrixMessage(ctx context.Context, msg *bridgev2.Mat
 				return nil, wrapConvertError(fmt.Errorf("failed to encrypt zipped file message: %w", err))
 			}
 			lineMsg.Chunks = chunks
+			contentMetadata["e2eeVersion"] = strconv.Itoa(e2ee.ChunksVersion(chunks))
 		}
 
 		retryReqSeq := int(time.Now().UnixMilli() % 1_000_000_000)
@@ -815,6 +817,7 @@ func (lc *LineClient) HandleMatrixMessage(ctx context.Context, msg *bridgev2.Mat
 					}
 					if err == nil {
 						lineMsg.Chunks = chunks
+						contentMetadata["e2eeVersion"] = strconv.Itoa(e2ee.ChunksVersion(chunks))
 						lineMsg.Text = ""
 					}
 				}
