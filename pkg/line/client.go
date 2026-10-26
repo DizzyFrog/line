@@ -39,6 +39,7 @@ var (
 	ErrOBSObjectNotFound     = errors.New("LINE OBS object not found")
 	ErrOBSEncodingIncomplete = errors.New("LINE OBS object encoding incomplete")
 	ErrOBSObjectValidation   = errors.New("LINE OBS object validation failed")
+	ErrOBSObjectTooLarge     = errors.New("LINE OBS object exceeds the size limit")
 )
 
 type Client struct {
@@ -807,32 +808,45 @@ func (c *Client) DownloadOBSWithSIDOptions(ctx context.Context, oid string, mess
 	return c.downloadOBSWithServiceAndSIDOptions(ctx, "talk", sid, oid, messageID, opts)
 }
 
-// DownloadOBSPublicResource downloads a public OBS resource referenced by
-// message content metadata. LINE Chrome uses DOWNLOAD_URL directly and skips
-// object_info.obs and the private OBS authorization header mapper.
-func (c *Client) DownloadOBSPublicResource(ctx context.Context, resourcePath string) ([]byte, error) {
-	parsedPath, err := url.Parse(resourcePath)
+// DownloadOBSPublicResource downloads a public resource referenced by
+// message content metadata. LINE Chrome uses DOWNLOAD_URL directly, as a full
+// URL or as a path on the OBS host, and skips object_info.obs and the private
+// OBS authorization header mapper.
+func (c *Client) DownloadOBSPublicResource(ctx context.Context, resource string) ([]byte, error) {
+	parsed, err := url.Parse(resource)
 	if err != nil {
-		return nil, fmt.Errorf("failed to parse public OBS resource path: %w", err)
+		return nil, fmt.Errorf("failed to parse public OBS resource: %w", err)
 	}
-	if parsedPath.IsAbs() || parsedPath.Host != "" || !strings.HasPrefix(parsedPath.Path, "/") {
-		return nil, errors.New("public OBS resource must be an absolute path")
+	target := OBSBaseURL + resource
+	httpClient := c.obsHTTPClient()
+	if parsed.IsAbs() {
+		target = resource
+		httpClient = c.publicMediaHTTPClient()
+	} else if parsed.Host != "" || !strings.HasPrefix(parsed.Path, "/") {
+		return nil, errPublicMediaPolicy
 	}
 
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, OBSBaseURL+resourcePath, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, target, nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create public OBS resource request: %w", err)
 	}
 	req.Header.Set("User-Agent", UserAgent)
 
-	resp, err := c.obsHTTPClient().Do(req)
+	resp, err := httpClient.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("public OBS resource request failed: %w", err)
 	}
-	body, readErr := io.ReadAll(resp.Body)
+	reader := io.Reader(resp.Body)
+	if parsed.IsAbs() {
+		reader = io.LimitReader(resp.Body, publicMediaMaxBytes+1)
+	}
+	body, readErr := io.ReadAll(reader)
 	resp.Body.Close()
 	if readErr != nil {
 		return nil, fmt.Errorf("failed to read public OBS resource response: %w", readErr)
+	}
+	if int64(len(body)) > publicMediaMaxBytes {
+		return nil, ErrOBSObjectTooLarge
 	}
 	switch resp.StatusCode {
 	case http.StatusOK:
@@ -842,7 +856,7 @@ func (c *Client) DownloadOBSPublicResource(ctx context.Context, resourcePath str
 	case http.StatusNotFound:
 		return nil, ErrOBSObjectNotFound
 	default:
-		return nil, newHTTPError(resp.StatusCode, "public OBS resource download failed (%d): %s", resp.StatusCode, string(body))
+		return nil, newHTTPError(resp.StatusCode, "public OBS resource download failed (%d): %s", resp.StatusCode, string(body[:min(len(body), 512)]))
 	}
 }
 
